@@ -1,0 +1,42 @@
+html {
+    background-image: url("IMG_1113.JPG");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+#top_container {
+    background-color: rgba(0, 0, 0, .7);
+    color: white;
+    text-align: center;
+    margin: 70px 200px;
+    padding: 20px 0;
+}
+
+.menu_links:visited, .menu_links {
+    margin: 5px 10px;
+    color: orange;
+    text-decoration: orange underline;
+    transition: .5s;
+}
+
+.menu_links:hover {
+    color: deepskyblue;
+}
+
+.default_music {
+    text-align: left;
+    padding-left: 50px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    margin: 40px 300px;
+}
+
+.misc_links:visited, .misc_links {
+    color: deepskyblue;
+    text-decoration: deepskyblue underline;
+    transition: .5s;
+}
+
+.misc_links:hover {
+    color: orange;
+}
