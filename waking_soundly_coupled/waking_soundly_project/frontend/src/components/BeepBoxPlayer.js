@@ -9,6 +9,7 @@ import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import {getMainMusic} from "../actions/mainMusic";
 import {getTransitionMusic} from "../actions/transitionMusic";
+import {getUserMusic} from "../actions/userMusic";
 
 class BeepBoxPlayer extends Component {
     constructor(props) {
@@ -32,13 +33,20 @@ class BeepBoxPlayer extends Component {
     // todo create fadein/fadeout timers (increase volume from 0 by .1 for the first 10 seconds)(decrease volume from 1 by .05 for the last 20 seconds)
 
     componentDidMount() {
+        this.changeBG();
+        this.props.changeContainer();
         this.props.getTransitionMusic();
         this.props.getMainMusic();
+        this.props.getUserMusic();
         setTimeout(this.sessionBuild, 1000);
         setTimeout(this.startSession, 2000);
         setTimeout(this.durationStart, 2000);
         setTimeout(this.barCheckStart, 3000);
     };
+
+    // componentWillUnmount() {
+    //     this.exit()
+    // }
 
     durationStart = () => {
         this.setState({
@@ -52,8 +60,13 @@ class BeepBoxPlayer extends Component {
         });
     };
 
+    // stops music currently playing, sets all session details back to nothing, goes back to homepage
     exit = () => {
-        // stops music currently playing, sets all session details back to nothing, goes back to homepage
+        this.props.changeContainer();
+        if (document.body.classList.contains("body_blackout")){
+            document.body.classList.add("body_default");
+            document.body.classList.remove("body_blackout")
+        }
         if (this.state.currentSong !== "") {
             this.state.currentSong.song.pause();
         }
@@ -88,8 +101,17 @@ class BeepBoxPlayer extends Component {
                     this.state.songArray.push(song);
                 }
             });
+        });
+        this.props.sessionInfo.chosenUserMusic.forEach(name => {
+            this.props.userMusic.forEach(userSong => {
+                if (name === userSong.name){
+                    this.state.songArray.push(userSong);
+                }
+            })
+        });
+        this.props.sessionInfo.allSessionKeys.forEach(key => {
             this.props.transitions.forEach(trans => {
-                if (key === trans.startKey && this.props.sessionInfo.chosenMusic.includes(trans.endKey)) {
+                if (key === trans.startKey && this.props.sessionInfo.allSessionKeys.includes(trans.endKey)) {
                     this.state.transitionArray.push(trans);
                 }
             })
@@ -172,7 +194,14 @@ class BeepBoxPlayer extends Component {
         }
     };
 
+    dynamicEffects = () => {
+
+    };
+
     checkStatus = () => {
+        // if (this.state.duration === (parseInt(this.props.sessionInfo.timer)/2) && this.state.duration > 5) {
+        //     this.dynamicEffects()
+        // }
         if (this.state.duration === .5 && !this.state.fadingOut) {
             this.setState({
                 fadeOutTimer: setInterval(this.fadeOut, 300),
@@ -182,16 +211,12 @@ class BeepBoxPlayer extends Component {
             this.exit();
         } else {
             if (this.state.songIsPlaying) {
-                console.log("check song");
                 if (this.state.currentSong.song.bar === (this.state.currentSong.song.song.barCount - 3) && !this.state.transSelected) {
-                    console.log("select transition");
                     this.selectTrans();
                     this.setState({
                         transSelected: true
                     })
                 } else if (this.state.currentSong.song.bar === (this.state.currentSong.song.song.barCount - 2)) {
-                    console.log(this.state.currentTrans);
-                    console.log("play transition");
                     this.state.currentTrans.song.play();
                     this.setState({
                         songIsPlaying: false,
@@ -200,16 +225,12 @@ class BeepBoxPlayer extends Component {
                     })
                 }
             } else if (this.state.transIsPlaying) {
-                console.log(this.state.currentTrans.song.song.barCount);
                 if (this.state.currentTrans.song.bar === (this.state.currentTrans.song.song.barCount - 3) && !this.state.songSelected) {
-                    console.log("select song");
                     this.selectSong();
                     this.setState({
                         songSelected: true
                     })
                 } else if (this.state.currentTrans.song.bar === (this.state.currentTrans.song.song.barCount - 2)) {
-                    console.log(this.state.currentSong);
-                    console.log("play song");
                     this.state.currentSong.song.play();
                     this.setState({
                         songIsPlaying: true,
@@ -223,7 +244,6 @@ class BeepBoxPlayer extends Component {
 
     // decreases duration by .5 to keep track of 30 second intervals
     durationFunc = () => {
-        console.log(`the current time left is ${this.state.duration - .5}`);
         if (this.state.duration !== 0) {
             this.setState({
                 duration: (this.state.duration - .5)
@@ -233,29 +253,39 @@ class BeepBoxPlayer extends Component {
 
     // reverb below 0 will break the playback
     increase = () => {
-        // this.state.currentSong.song.reverb += 1;
-        this.state.currentSong.volume += .1
+        console.log(this.state.currentSong.song.song.reverb);
+        this.state.currentSong.song.song.reverb += 1;
+        // this.state.currentSong.volume += .1
     };
 
     decrease = () => {
-        // this.state.currentSong.song.reverb -= 1;
-        this.state.currentSong.volume -= .05
+        this.state.currentSong.song.reverb -= 1;
+        // this.state.currentSong.volume -= .05
     };
 
     checkCurrentSong = () => {
-        console.log(this.state.currentSong);
+        // console.log(this.state.currentSong);
+        console.log(this.state)
+    };
+
+    changeBG = () => {
+        if (this.props.sessionInfo.background === "blackout"){
+            document.body.classList.add("body_blackout");
+            document.body.classList.remove("body_default");
+        }
     };
 
     render() {
         return (
             <div>
-                <h1>Beepbox Player</h1>
-                <button onClick={() => this.sessionBuild()}>Build</button>
-                <button onClick={() => this.startSession()}>Play</button>
-                <button onClick={() => this.exit()}>Cancel</button>
-                <button onClick={() => this.checkCurrentSong()}>Check</button>
-                <button onClick={() => this.increase()}>Inc</button>
-                <button onClick={() => this.decrease()}>Dec</button>
+                {/*<h1>Beepbox Player</h1>*/}
+                {/*<button onClick={() => this.sessionBuild()}>Build</button>*/}
+                {/*<button onClick={() => this.startSession()}>Play</button>*/}
+                <button onClick={() => this.exit()}>Exit Session</button>
+                {/*<button onClick={() => this.checkCurrentSong()}>Check</button>*/}
+                {/*<button onClick={() => this.increase()}>Inc</button>*/}
+                {/*<button onClick={() => this.decrease()}>Dec</button>*/}
+                {/*<button onClick={() => this.changeBG()}>Switch background</button>*/}
             </div>
         );
     }
@@ -263,7 +293,8 @@ class BeepBoxPlayer extends Component {
 
 const mapStateToProps = state => ({
     mainMusic: state.mainMusic.mainMusic,
-    transitions: state.transitions.transitions
+    transitions: state.transitions.transitions,
+    userMusic: state.userMusic.userMusic,
 });
 
-export default connect(mapStateToProps, {getMainMusic, getTransitionMusic})(BeepBoxPlayer);
+export default connect(mapStateToProps, {getMainMusic, getTransitionMusic, getUserMusic})(BeepBoxPlayer);

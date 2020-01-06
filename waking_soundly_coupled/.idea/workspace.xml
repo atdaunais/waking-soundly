@@ -1,7 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="7572fe9e-ef19-4028-b151-2e3355c04b96" name="Default Changelist" comment="" />
+    <list default="true" id="7572fe9e-ef19-4028-b151-2e3355c04b96" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/waking_soundly_project/accounts/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/waking_soundly_project/accounts/serializers.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/waking_soundly_project/accounts/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/waking_soundly_project/accounts/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/waking_soundly_project/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/waking_soundly_project/db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/waking_soundly_project/frontend/src/actions/auth.js" beforeDir="false" afterPath="$PROJECT_DIR$/waking_soundly_project/frontend/src/actions/auth.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/waking_soundly_project/frontend/src/components/AddMusic.js" beforeDir="false" afterPath="$PROJECT_DIR$/waking_soundly_project/frontend/src/components/AddMusic.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/waking_soundly_project/frontend/src/components/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/waking_soundly_project/frontend/src/components/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/waking_soundly_project/frontend/src/components/BeepBoxPlayer.js" beforeDir="false" afterPath="$PROJECT_DIR$/waking_soundly_project/frontend/src/components/BeepBoxPlayer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/waking_soundly_project/frontend/src/components/Home.js" beforeDir="false" afterPath="$PROJECT_DIR$/waking_soundly_project/frontend/src/components/Home.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/waking_soundly_project/frontend/src/components/LoginPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/waking_soundly_project/frontend/src/components/LoginPage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/waking_soundly_project/frontend/src/components/NewUser.js" beforeDir="false" afterPath="$PROJECT_DIR$/waking_soundly_project/frontend/src/components/NewUser.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/waking_soundly_project/frontend/src/components/TopRouter.js" beforeDir="false" afterPath="$PROJECT_DIR$/waking_soundly_project/frontend/src/components/TopRouter.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/waking_soundly_project/frontend/src/components/display/DisplayUserMusic.js" beforeDir="false" afterPath="$PROJECT_DIR$/waking_soundly_project/frontend/src/components/display/DisplayUserMusic.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/waking_soundly_project/frontend/src/components/display/EditMusic.js" beforeDir="false" afterPath="$PROJECT_DIR$/waking_soundly_project/frontend/src/components/display/EditMusic.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/waking_soundly_project/frontend/static/frontend/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/waking_soundly_project/frontend/static/frontend/index.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/waking_soundly_project/frontend/static/frontend/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/waking_soundly_project/frontend/static/frontend/main.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/waking_soundly_project/frontend/templates/frontend/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/waking_soundly_project/frontend/templates/frontend/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/waking_soundly_project/frontend/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/waking_soundly_project/frontend/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/waking_soundly_project/waking_soundly_app/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/waking_soundly_project/waking_soundly_app/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/waking_soundly_project/waking_soundly_app/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/waking_soundly_project/waking_soundly_app/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/waking_soundly_project/waking_soundly_app/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/waking_soundly_project/waking_soundly_app/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/waking_soundly_project/waking_soundly_project/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/waking_soundly_project/waking_soundly_project/urls.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -36,6 +60,9 @@
       </list>
     </option>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
   <component name="JsFlowSettings">
     <service-enabled>true</service-enabled>
     <exe-path />
@@ -43,15 +70,18 @@
     <auto-save>true</auto-save>
   </component>
   <component name="ProjectId" id="1VFknxtVARBUxMjq8EEWkTdzvOW" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showExcludedFiles" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="JavaScriptWeakerCompletionTypeGuess" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="javascript.nodejs.core.library.configured.version" value="10.16.0" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
@@ -105,10 +135,14 @@
       <screen x="0" y="27" width="1600" height="822" />
     </state>
     <state x="395" y="98" width="800" height="677" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.27.1600.822@0.27.1600.822" timestamp="1577140235408" />
-    <state x="469" y="242" width="651" height="390" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1577044499564">
+    <state x="469" y="242" width="825" height="390" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1578153786651">
       <screen x="0" y="27" width="1600" height="822" />
     </state>
-    <state x="469" y="242" width="651" height="390" key="#com.intellij.fileTypes.FileTypeChooser/0.27.1600.822@0.27.1600.822" timestamp="1577044499564" />
+    <state x="469" y="242" width="825" height="390" key="#com.intellij.fileTypes.FileTypeChooser/0.27.1600.822@0.27.1600.822" timestamp="1578153786651" />
+    <state x="483" y="165" width="624" height="544" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog" timestamp="1578253486213">
+      <screen x="0" y="27" width="1600" height="822" />
+    </state>
+    <state x="483" y="165" width="624" height="544" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog/0.27.1600.822@0.27.1600.822" timestamp="1578253486213" />
     <state x="909" y="105" width="424" height="484" key="FileChooserDialogImpl" timestamp="1577463677116">
       <screen x="0" y="27" width="1600" height="822" />
     </state>
@@ -121,13 +155,17 @@
       <screen x="0" y="27" width="1600" height="822" />
     </state>
     <state x="433" y="27" width="1024" height="822" key="SettingsEditor/0.27.1600.822@0.27.1600.822" timestamp="1576856412710" />
-    <state x="456" y="264" key="com.intellij.ide.util.TipDialog" timestamp="1577736923073">
+    <state x="456" y="264" key="com.intellij.ide.util.TipDialog" timestamp="1578253878369">
       <screen x="0" y="27" width="1600" height="822" />
     </state>
-    <state x="456" y="264" key="com.intellij.ide.util.TipDialog/0.27.1600.822@0.27.1600.822" timestamp="1577736923073" />
+    <state x="456" y="264" key="com.intellij.ide.util.TipDialog/0.27.1600.822@0.27.1600.822" timestamp="1578253878369" />
     <state x="692" y="27" width="869" height="822" key="find.popup" timestamp="1576876470501">
       <screen x="0" y="27" width="1600" height="822" />
     </state>
     <state x="692" y="27" width="869" height="822" key="find.popup/0.27.1600.822@0.27.1600.822" timestamp="1576876470501" />
+    <state x="463" y="170" width="672" height="678" key="search.everywhere.popup" timestamp="1578186797347">
+      <screen x="0" y="27" width="1600" height="822" />
+    </state>
+    <state x="463" y="170" width="672" height="678" key="search.everywhere.popup/0.27.1600.822@0.27.1600.822" timestamp="1578186797347" />
   </component>
 </project>

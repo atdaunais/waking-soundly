@@ -6,9 +6,11 @@ import {register} from "../actions/auth";
 
 class NewUser extends Component {
     state = {
-      username: "",
-      password: "",
-      password2: ""
+        username: "",
+        password: "",
+        password2: "",
+        email: "",
+        errorMsg: ""
     };
 
     static propTypes = {
@@ -18,14 +20,19 @@ class NewUser extends Component {
 
     createNewUser = (e) => {
         e.preventDefault();
-        const {username, password, password2} = this.state;
-        if(password !== password2){
-            console.log("passwords don't match")
-        }
-        else{
+        const {username, email, password, password2} = this.state;
+        if (password !== password2) {
+            console.log("passwords don't match");
+            this.setState({
+                errorMsg: "Your passwords do not match."
+            })
+        } else {
             const newUser = {
-                username, password
+                username, email, password
             };
+            this.setState({
+               errorMsg: ""
+            });
             this.props.register(newUser);
         }
     };
@@ -37,27 +44,33 @@ class NewUser extends Component {
     };
 
     render() {
-        if (this.props.isAuthenticated){
+        if (this.props.isAuthenticated) {
             return <Redirect to="/"/>;
         }
-        const { username, password, password2 } = this.state;
+        const {username, password, password2} = this.state;
         return (
             <div>
-                <h1>New User</h1>
-                <form onSubmit={this.createNewUser}>
-                    <label htmlFor="username">Username</label>
-                    <input type="text" name="username" value={username} onChange={this.changeValue}/>
-
-                    <label htmlFor="password">Password</label>
-                    <input type="password" name="password" value={password} onChange={this.changeValue}/>
-
-                    <label htmlFor="password2">Confirm Password</label>
-                    <input type="password" name="password2" value={password2} onChange={this.changeValue}/>
-                    <button type="submit">Create Account</button>
-                    <p>
-                        Already have an account? <Link className="misc_links" to="/login/">Login</Link>
-                    </p>
-                </form>
+                <h1>Start Your Journey</h1>
+                <div className="form_container">
+                    <form onSubmit={this.createNewUser}>
+                        <label htmlFor="username">Username</label>
+                        <input className="form_input_field" type="text" name="username" value={username} onChange={this.changeValue}/>
+                        <br/>
+                        <label htmlFor="password">Password</label>
+                        <input className="form_input_field" type="password" name="password" value={password} onChange={this.changeValue}/>
+                        <br/>
+                        <label htmlFor="password2">Confirm Password</label>
+                        <input className="form_input_field" type="password" name="password2" value={password2} onChange={this.changeValue}/>
+                        <br/>
+                        <div className="form_button">
+                            <button type="submit">Create Account</button>
+                        </div>
+                    </form>
+                </div>
+                <div id="error_msg">{this.state.errorMsg}</div>
+                <div>
+                    Already have an account? <Link className="misc_links" to="/login/">Login</Link>
+                </div>
             </div>
         );
     }

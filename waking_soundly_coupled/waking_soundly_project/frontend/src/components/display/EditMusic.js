@@ -29,13 +29,36 @@ class EditMusic extends Component {
     render() {
         return (
             <div>
-                <form onSubmit={this.updateSong}>
-                    <label htmlFor="songURL">Song URL: </label><input id="songURL" name="songURL" defaultValue={this.state.songURL || ''} onChange={this.changeState} type="text"/>
-                    <label htmlFor="key">Key: </label><input id="key" defaultValue={this.state.key || ''} name="key" onChange={this.changeState} type="text"/>
-                    <label htmlFor="name">Song Name: </label><input id="name" defaultValue={this.state.name || ''} name="name" onChange={this.changeState} type="text"/>
-                    <button>Save Changes</button>
-                </form>
-                <button onClick={this.props.cancelEdit}>Cancel</button>
+                    <form onSubmit={this.updateSong}>
+                        <label htmlFor="songURL">Song URL: </label><input className="form_input_field" id="songURL" name="songURL" defaultValue={this.state.songURL || ''} onChange={this.changeState} type="text"/>
+                        <br/>
+                        <label htmlFor="key">Key: </label>
+                        {/*<input className="form_input_field" id="key" defaultValue={this.state.key || ''} name="key" onChange={this.changeState} type="text"/>*/}
+                        <select className="form_input_field" name="key" id="key" defaultValue={this.state.key || ''} onChange={this.changeState}>
+                            <option value="C">C</option>
+                            <option value="C#">C#</option>
+                            <option value="D">D</option>
+                            <option value="D#">D#</option>
+                            <option value="E">E</option>
+                            <option value="F">F</option>
+                            <option value="F#">F#</option>
+                            <option value="G">G</option>
+                            <option value="G#">G#</option>
+                            <option value="A">A</option>
+                            <option value="A#">A#</option>
+                            <option value="B">B</option>
+                        </select>
+                        <br/>
+                        <label htmlFor="name">Song Name: </label><input className="form_input_field" id="name" defaultValue={this.state.name || ''} name="name" onChange={this.changeState} type="text"/>
+                        <br/>
+                        <div>
+                            <button>Save Changes</button>
+
+                        </div>
+                    </form>
+                    <div>
+                        <button onClick={this.props.cancelEdit}>Cancel</button>
+                    </div>
             </div>
         );
     }

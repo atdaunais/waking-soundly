@@ -12,6 +12,9 @@ class Transition(models.Model):
     startKey = models.CharField(max_length=10)
     endKey = models.CharField(max_length=10)
 
+    def __str__(self):
+        return f"{self.startKey} - {self.endKey}"
+
 
 class UserSong(models.Model):
     songURL = models.CharField(max_length=3000)

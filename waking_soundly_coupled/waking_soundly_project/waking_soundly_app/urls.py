@@ -9,5 +9,5 @@ router.register('transition', TransitionViewSet)
 router.register('user_song', UserSongViewSet, basename="UserSong")
 
 urlpatterns = [
-    path('', include(router.urls)),
+    path('', include(router.urls))
 ]

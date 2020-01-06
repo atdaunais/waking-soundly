@@ -16,18 +16,18 @@ class DisplayUserMusic extends Component {
     render() {
         if(this.state.editing){
             return (
-                <div>
+                <div className="display_user_music">
                     <EditMusic cancelEdit={this.cancelEdit} song={this.props.song}/>
                 </div>
             );
         }
         else{
             return (
-                <div>
-                    <p>Song URL: {this.props.song.name}</p>
-                    <p>Key: {this.props.song.key}</p>
-                    <button onClick={this.props.deleteUserMusic.bind(this, this.props.song.id)}>Delete</button>
+                <div className="display_user_music">
+                    <div>Song Name: {this.props.song.name}</div>
+                    <div>Key: {this.props.song.key}</div>
                     <button onClick={()=>this.setState({editing: true})}>Edit</button>
+                    <button className="delete_button" onClick={this.props.deleteUserMusic.bind(this, this.props.song.id)}>Delete</button>
                 </div>
             )
         }

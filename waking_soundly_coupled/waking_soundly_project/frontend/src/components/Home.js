@@ -2,8 +2,7 @@ import React, {Component} from 'react';
 import BeepBoxPlayer from "./BeepBoxPlayer";
 import {connect} from "react-redux";
 import {getUserMusic} from "../actions/userMusic";
-import DisplayUserMusic from "./display/DisplayUserMusic";
-import {Link} from "react-router-dom";
+import {BrowserRouter as Router, Link} from "react-router-dom";
 
 class Home extends Component {
     constructor(props) {
@@ -12,8 +11,13 @@ class Home extends Component {
             meditationActive: false,
             errorMsg: "",
             musicArray: ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"],
+            userMusicArray: [],
             sessionInfo: {}
         }
+    }
+
+    componentDidMount() {
+        this.props.getUserMusic();
     }
 
     cancelMeditation = () => {
@@ -21,13 +25,22 @@ class Home extends Component {
     };
 
     startMeditation = (e) => {
-
         e.preventDefault();
         // set a temp object to store the keys and time selected by user
-        let sessionInfo = {chosenMusic: [], timer: ""};
+        let sessionInfo = {chosenMusic: [], chosenUserMusic: [], allSessionKeys: [], timer: "", background: ""};
         this.state.musicArray.forEach(key => {
             if (document.getElementById(key).checked) {
-                sessionInfo.chosenMusic.push(key)
+                sessionInfo.chosenMusic.push(key);
+                sessionInfo.allSessionKeys.push(key);
+            }
+        });
+
+        this.props.userMusic.forEach(userSong => {
+            if (document.getElementById(userSong.name).checked) {
+                sessionInfo.chosenUserMusic.push(userSong.name);
+                if (!sessionInfo.allSessionKeys.includes(userSong.key)){
+                    sessionInfo.allSessionKeys.push(userSong.key)
+                }
             }
         });
 
@@ -35,86 +48,66 @@ class Home extends Component {
             this.setState({errorMsg: "You must select at least two keys and the timer must be longer than 0 minutes."})
         } else {
             sessionInfo.timer = document.getElementById("timer").value;
-            // console.log(sessionInfo);
+            sessionInfo.background = document.getElementById("image_choice").value;
+            console.log(sessionInfo);
             this.setState({meditationActive: true, sessionInfo: sessionInfo, errorMsg: ""})
         }
     };
 
     render() {
         let songDisplay = this.props.userMusic.map(song => (
-            <div key={song.id}>
-                <input type="checkbox"/> {song.name}
+            <div key={song.id} className="checkbox">
+                <input type="checkbox" id={song.name}/><label htmlFor={song.name}>{song.name} ({song.key})</label>
             </div>
         ));
+
         let noSongs = <div>
-            Want to hear your own musical ideas while you meditate? Try adding your own music <Link className="misc_links" to="/addmusic/">Here</Link>!
+            <div className="misc_text">Want to hear your own musical ideas while you meditate? Try adding your own music <Link
+                className="misc_links" to="/addmusic/">Here</Link>!</div>
         </div>;
+
+        let defaultCheckboxes = this.state.musicArray.map(key => (
+            <div className="checkbox" key={key}>
+                <input type="checkbox" id={key}/><label htmlFor={key}>{key}</label>
+            </div>
+        ));
 
         if (this.state.meditationActive) {
             return (
-                <BeepBoxPlayer cancelMeditation={this.cancelMeditation} sessionInfo={this.state.sessionInfo}/>
+                <BeepBoxPlayer cancelMeditation={this.cancelMeditation} changeContainer={this.props.changeContainer} sessionInfo={this.state.sessionInfo}/>
             )
         } else {
             return (
                 <div>
-                    <h1>Waking Soundly</h1>
+                    <img src="../../static/frontend/logo_transparent_background.png" id="home_logo" alt="logo"/>
                     <p>Welcome to Waking Soundly. Pick a few tonal centers from the list below (as many as you like) and
                         we'll weave together a soundscape for your meditation.</p>
+                    <div id="error_msg">{this.state.errorMsg}</div>
                     <form onSubmit={this.startMeditation}>
                         <div className="default_music">
-                            <div>
-                                <input type="checkbox" id="C"/> C
-                            </div>
-                            <div>
-                                <input type="checkbox" id="C#"/> C#
-                            </div>
-                            <div>
-                                <input type="checkbox" id="D"/> D
-                            </div>
-                            <div>
-                                <input type="checkbox" id="D#"/> D#
-                            </div>
-                            <div>
-                                <input type="checkbox" id="E"/> E
-                            </div>
-                            <div>
-                                <input type="checkbox" id="F"/> F
-                            </div>
-                            <div>
-                                <input type="checkbox" id="F#"/> F#
-                            </div>
-                            <div>
-                                <input type="checkbox" id="G"/> G
-                            </div>
-                            <div>
-                                <input type="checkbox" id="G#"/> G#
-                            </div>
-                            <div>
-                                <input type="checkbox" id="A"/> A
-                            </div>
-                            <div>
-                                <input type="checkbox" id="A#"/> A#
-                            </div>
-                            <div>
-                                <input type="checkbox" id="B"/> B
-                            </div>
+                            {defaultCheckboxes}
+                        </div>
+                        <div className="misc_text">
+                            What would you like on your screen while you meditate? <select className="form_input_field" name="image_choice" id="image_choice">
+                            <option value="default">Current Picture</option>
+                            <option value="blackout">Blackout Screen</option>
+                        </select>
                         </div>
 
                         {this.props.isAuthenticated ?
                             <div>
-                                <div>Your Music</div>
-                                {this.props.userMusic.length > 0 ? songDisplay : noSongs}
+                                <Link to="/addmusic/" id="my_music_link"><h2>My Music</h2></Link>
+                                    {this.props.userMusic.length > 0 ? <div className="user_music">{songDisplay}</div> : noSongs}
                             </div>
                             :
                             ""
                         }
-                        <div>
+                        <div className="misc_text">
                             How long would you like your meditation to last? <input type="number" id="timer"
                                                                                     defaultValue={0}/> minutes
                         </div>
                         <button>Begin</button>
                     </form>
-                    <div>{this.state.errorMsg}</div>
                 </div>
             );
         }

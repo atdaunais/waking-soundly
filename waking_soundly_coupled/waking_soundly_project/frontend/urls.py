@@ -6,5 +6,6 @@ urlpatterns = [
     path('addmusic/', views.index),
     path('login/', views.index),
     path('newuser/', views.index),
+    path('about/', views.index),
     path('editmusic/<int:songid>/', views.edit_song)
 ]
