@@ -25,7 +25,7 @@ SECRET_KEY = 'm4p8*xqut#5@i=tnj6vpp#eu1ay!madm_0c_zzb@ek7ufldfuz'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1','wakingsoundly.com','app3.andrewdaunais.com','138.68.232.13']
+ALLOWED_HOSTS = ['127.0.0.1','wakingsoundly.com','app2.andrewdaunais.com','138.68.232.13']
 
 
 # Application definition
